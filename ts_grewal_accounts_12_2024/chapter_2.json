@@ -1,0 +1,13 @@
+{
+  "chapter": 2,
+  "chapter_name": "Sample Chapter 2",
+  "questions": [
+    {
+      "number": 1,
+      "image_url": "images/ch2_q1.png",
+      "answer_image_url": [
+        "images/ch2_q1_a1.png"
+      ]
+    }
+  ]
+}

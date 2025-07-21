@@ -1,0 +1,19 @@
+{
+  "chapter": 1,
+  "chapter_name": "Sample Chapter 1",
+  "questions": [
+    {
+      "number": 1,
+      "image_url": "ts_grewal_accounts_12_2024/images/IMG_8731.JPG",
+      "answer_image_url": [
+        "ts_grewal_accounts_12_2024/images/IMG_8731.JPG"
+      ]
+    },{
+      "number": 2,
+      "image_url": "ts_grewal_accounts_12_2024/images/IMG_8732.JPG",
+      "answer_image_url": [
+        "ts_grewal_accounts_12_2024/images/IMG_8732.JPG"
+      ]
+    }
+  ]
+}

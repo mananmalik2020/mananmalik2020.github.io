@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Courses Landing Page</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body>
+  <div class="container py-5">
+    <div class="row mb-3">
+      <div class="col-md-4">
+        <input type="text" id="chapter-search" class="form-control" placeholder="Search chapter...">
+      </div>
+    </div>
+    <h1 class="mb-4">Courses</h1>
+    <div class="list-group" id="chapters"></div>
+  </div>
+  <script>
+    let allChapters = [];
+    fetch('ts_grewal_accounts_12_2024/ts_grewal_accounts_12_2024.json')
+      .then(response => response.json())
+      .then(data => {
+        allChapters = data;
+        renderChapters(data);
+      });
+
+    function renderChapters(chapters) {
+      const chaptersDiv = document.getElementById('chapters');
+      chaptersDiv.innerHTML = '';
+      chapters.forEach(chapter => {
+        const a = document.createElement('a');
+        a.className = 'list-group-item list-group-item-action';
+        a.href = `chapter?chapter=${chapter.chapter}`;
+        a.textContent = `Chapter ${chapter.chapter}: ${chapter.chapter_name}`;
+        chaptersDiv.appendChild(a);
+      });
+    }
+
+    document.getElementById('chapter-search').addEventListener('input', function() {
+      const search = this.value.trim().toLowerCase();
+      const filtered = allChapters.filter(chapter =>
+        (`${chapter.chapter} ${chapter.chapter_name}`.toLowerCase().includes(search))
+      );
+      renderChapters(filtered);
+    });
+  </script>
+</body>
+</html>
