@@ -4,6 +4,7 @@
   "questions": [
     {
       "number": 1,
+      "question_text": "Mohan and Rohan are discussing trial balance.",
       "image_url": "images/ch2_q1.png",
       "answer_image_url": [
         "images/ch2_q1_a1.png"

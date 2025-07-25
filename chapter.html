@@ -43,13 +43,17 @@
       });
 
     function renderQuestions(questions) {
+      debugger;
       const questionsDiv = document.getElementById('questions');
       questionsDiv.innerHTML = '';
-      questions.forEach(q => {
+      questions.forEach((q, i) => {
         const a = document.createElement('a');
         a.className = 'list-group-item list-group-item-action';
         a.href = `question?chapter=${chapterNum}&question=${q.number}`;
-        a.textContent = `Question ${q.number}`;
+        a.textContent = `Question a ${q.number}: ${q.question_text}`;
+        if (i % 2 === 1) {
+          a.style.backgroundColor = '#f8f9fa'; // light gray for alternate rows
+        }
         questionsDiv.appendChild(a);
       });
     }

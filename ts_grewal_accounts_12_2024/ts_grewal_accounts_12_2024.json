@@ -8,5 +8,10 @@
     "chapter": 2,
     "chapter_name": "Sample Chapter 2",
     "questions_json_link": "ts_grewal_accounts_12_2024/chapter_2.json"
+  },
+    {
+    "chapter": 3,
+    "chapter_name": "Retirement of a partner",
+    "questions_json_link": "ts_grewal_accounts_12_2024/chapter_3.json"
   }
 ]

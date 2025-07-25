@@ -13,6 +13,7 @@
     <h3>Answer</h3>
     <div id="answer-images" class="mb-4"></div>
     <a id="back-link" href="#" class="btn btn-secondary mt-4">Back to Questions</a>
+    <a id="next-question" href="#" class="btn btn-primary mt-4 float-end">Next Question</a>
   </div>
   <script>
     function getQueryParam(param) {
@@ -43,11 +44,20 @@
             question.answer_image_url.forEach(url => {
               const img = document.createElement('img');
               img.src = url;
-              img.className = 'img-fluid rounded border mb-2 me-2';
-              img.style.maxWidth = '300px';
+              img.className = 'img-fluid rounded border';
               answerDiv.appendChild(img);
             });
             document.getElementById('back-link').href = `chapter?chapter=${chapter.chapter}`;
+            // Set next question button
+            const nextNum = parseInt(questionNum) + 1;
+            const nextQuestion = chapter.questions.find(q => q.number == nextNum);
+            const nextBtn = document.getElementById('next-question');
+            if (nextQuestion) {
+              nextBtn.href = `question?chapter=${chapter.chapter}&question=${nextNum}`;
+              nextBtn.style.display = '';
+            } else {
+              nextBtn.style.display = 'none';
+            }
           });
       });
   </script>
