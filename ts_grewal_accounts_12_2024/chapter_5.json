@@ -17,8 +17,50 @@
     },    
     {
       "number": 3,
-      "question_text": "",
-      "image_url": "ts_grewal_accounts_12_2024/images/ch_5/questions/Q2_ParasMohanHari_PQR.jpg",
+      "question_text": "R,S,M are partners sharing profits. M retires",
+      "image_url": "ts_grewal_accounts_12_2024/images/ch_5/questions/Q3_R,S,M.JPG",
+      "answer_image_url": []
+    },
+    {
+      "number": 4,
+      "question_text": "X,Y,Z are partners 1/2,3/10 and 1/5",
+      "image_url": "ts_grewal_accounts_12_2024/images/ch_5/questions/Q4_X,Y,Z.JPG",
+      "answer_image_url": []
+    },
+    {
+      "number": 5,
+      "question_text": "Sarthak,Vansh and Mansi 4:3:2",
+      "image_url": "ts_grewal_accounts_12_2024/images/ch_5/questions/Q5_sarthak_vansh_mansi.JPG",
+      "answer_image_url": []
+    },
+    {
+      "number": 6,
+      "question_text": "(a) W,X,Y,Z (b)A,B and C",
+      "image_url": "ts_grewal_accounts_12_2024/images/ch_5/questions/Q6_WXYZ_ABC.JPG",
+      "answer_image_url": []
+    },
+    {
+      "number": 7,
+      "question_text": "Kumar,Lakshya,Manoj,Naresh 3:2:1:4",
+      "image_url": "ts_grewal_accounts_12_2024/images/ch_5/questions/Q7_KUMAR_LAKSHYA_MANOJ.JPG",
+      "answer_image_url": []
+    },
+    {
+      "number": 8,
+      "question_text": "A,B and C 8:4:3",
+      "image_url": "ts_grewal_accounts_12_2024/images/ch_5/questions/Q8_ABC_843.JPG",
+      "answer_image_url": []
+    },
+    {
+      "number": 9,
+      "question_text": "A,B and C 5:3:2",
+      "image_url": "ts_grewal_accounts_12_2024/images/ch_5/questions/Q9_ABC_532.JPG",
+      "answer_image_url": []
+    },
+    {
+      "number": 10,
+      "question_text": "Murli,Naveen and Omprakash 3/8,1/2 and 1/8",
+      "image_url": "ts_grewal_accounts_12_2024/images/ch_5/questions/Q10_Murli_Naveen_omprakash.JPG",
       "answer_image_url": []
     }
   ]
