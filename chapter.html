@@ -60,9 +60,11 @@
 
     document.getElementById('question-search').addEventListener('input', function() {
       const search = this.value.trim().toLowerCase();
-      const filtered = allQuestions.filter(q =>
-        (`${q.number}`.toLowerCase().includes(search))
-      );
+      const filtered = allQuestions.filter(q => {
+        const numMatch = (`${q.number}`).toLowerCase().includes(search);
+        const textMatch = (q.question_text || '').toLowerCase().includes(search);
+        return numMatch || textMatch;
+      });
       renderQuestions(filtered);
     });
   </script>
