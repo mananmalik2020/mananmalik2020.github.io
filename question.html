@@ -39,12 +39,26 @@
               return;
             }
             document.getElementById('question-title').textContent = `Chapter ${chapter.chapter}: ${chapter.chapter_name} - Question ${question.number}`;
-            document.getElementById('question-image').innerHTML = `<img src="${question.image_url}" class="img-fluid rounded border" alt="Question Image">`;
-            const answerDiv = document.getElementById('answer-images');
-            question.answer_image_url.forEach(url => {
+            // Render question images. Accept either a single string or an array for backwards compatibility.
+            const qImageDiv = document.getElementById('question-image');
+            qImageDiv.innerHTML = '';
+            const qImages = Array.isArray(question.image_url) ? question.image_url : (question.image_url ? [question.image_url] : []);
+            qImages.forEach(url => {
               const img = document.createElement('img');
               img.src = url;
-              img.className = 'img-fluid rounded border';
+              img.className = 'img-fluid rounded border me-2 mb-2';
+              img.alt = 'Question Image';
+              qImageDiv.appendChild(img);
+            });
+            // Render answer images if present
+            const answerDiv = document.getElementById('answer-images');
+            answerDiv.innerHTML = '';
+            const aImages = Array.isArray(question.answer_image_url) ? question.answer_image_url : (question.answer_image_url ? [question.answer_image_url] : []);
+            aImages.forEach(url => {
+              const img = document.createElement('img');
+              img.src = url;
+              img.className = 'img-fluid rounded border me-2 mb-2';
+              img.alt = 'Answer Image';
               answerDiv.appendChild(img);
             });
             document.getElementById('back-link').href = `chapter?chapter=${chapter.chapter}`;
