@@ -8,6 +8,13 @@
 </head>
 <body>
   <div class="container py-5">
+    <div class="row mb-3">
+      <div class="col-md-6 position-relative">
+        <input type="text" id="question-search" class="form-control" placeholder="Search question in chapter...">
+        <!-- results dropdown: hidden by default, appears while typing -->
+        <div id="questions" class="list-group" style="display:none; position: absolute; z-index: 1000; width:100%; max-height:300px; overflow:auto;"> </div>
+      </div>
+    </div>
     <h1 id="question-title" class="mb-4"></h1>
     <div id="question-image" class="mb-4"></div>
     <h3>Answer</h3>
@@ -20,8 +27,9 @@
       const urlParams = new URLSearchParams(window.location.search);
       return urlParams.get(param);
     }
-    const chapterNum = getQueryParam('chapter');
-    const questionNum = getQueryParam('question');
+  const chapterNum = getQueryParam('chapter');
+  const questionNum = getQueryParam('question');
+  let allQuestions = [];
     fetch('ts_grewal_accounts_12_2024/ts_grewal_accounts_12_2024.json')
       .then(response => response.json())
       .then(masterData => {
@@ -33,7 +41,8 @@
         fetch(chapterMeta.questions_json_link)
           .then(response => response.json())
           .then(chapter => {
-            const question = chapter.questions.find(q => q.number == questionNum);
+                allQuestions = chapter.questions;
+                const question = chapter.questions.find(q => q.number == questionNum);
             if (!question) {
               document.getElementById('question-title').textContent = 'Question not found';
               return;
@@ -74,6 +83,66 @@
             }
           });
       });
+
+    function renderQuestionList(questions) {
+      const questionsDiv = document.getElementById('questions');
+      if (!questionsDiv) return;
+      questionsDiv.innerHTML = '';
+      questions.forEach((q) => {
+        const a = document.createElement('a');
+        a.className = 'list-group-item list-group-item-action';
+        a.href = `question?chapter=${chapterNum}&question=${q.number}`;
+        a.textContent = `Question ${q.number}: ${q.question_text}`;
+        if (`${q.number}` == `${questionNum}`) {
+          a.classList.add('active');
+        }
+        questionsDiv.appendChild(a);
+      });
+    }
+
+    const searchInput = document.getElementById('question-search');
+    const questionsDiv = document.getElementById('questions');
+    function adjustDropdownToInput() {
+      // size and align the dropdown to match the input exactly
+      const rect = searchInput.getBoundingClientRect();
+      const parentRect = searchInput.offsetParent.getBoundingClientRect();
+      const left = searchInput.offsetLeft; // relative to offsetParent
+      const width = searchInput.offsetWidth;
+      questionsDiv.style.left = left + 'px';
+      questionsDiv.style.width = width + 'px';
+      questionsDiv.style.boxSizing = 'border-box';
+    }
+
+    searchInput.addEventListener('input', function() {
+      const val = this.value.trim();
+      const search = val.toLowerCase();
+      if (!val) {
+        questionsDiv.style.display = 'none';
+        questionsDiv.innerHTML = '';
+        return;
+      }
+      const filtered = allQuestions.filter(q => {
+        const numMatch = (`${q.number}`).toLowerCase().includes(search);
+        const textMatch = (q.question_text || '').toLowerCase().includes(search);
+        return numMatch || textMatch;
+      }).slice(0, 10); // limit results
+      renderQuestionList(filtered);
+      // ensure the dropdown exactly matches the input width/alignment
+      adjustDropdownToInput();
+      questionsDiv.style.display = filtered.length ? 'block' : 'none';
+    });
+
+    // hide dropdown when clicking outside
+    document.addEventListener('click', (e) => {
+      if (!document.getElementById('question-search').contains(e.target) && !questionsDiv.contains(e.target)) {
+        questionsDiv.style.display = 'none';
+      }
+    });
+
+    // Recalculate on window resize so dropdown stays aligned
+    window.addEventListener('resize', () => {
+      if (questionsDiv.style.display !== 'none') adjustDropdownToInput();
+    });
   </script>
 </body>
 </html>
